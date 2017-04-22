@@ -1,15 +1,15 @@
-# app
-
-> A Vue.js project
+# Katsikapes Vue Project
+follow the steps below to start webpack server -- instructions will be coming soon for Heroku deployment (or something else we do).
 
 ## Build Setup
 
 ``` bash
 # install dependencies
+cd app
 npm install
 
 # serve with hot reload at localhost:8080
-npm run dev
+npm start
 
 # build for production with minification
 npm run build
