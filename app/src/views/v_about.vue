@@ -46,4 +46,23 @@ module.exports =
 
 #v_about
 
+.teamPictureItem
+  position: relative
+  height: 20vw
+  width: 100%
+  background-color: lightgray
+  margin-bottom: 50px
+  .pictureInfoItem
+    position: absolute
+    width: calc(100% - 30px)
+    left: 0
+    background-color: #3a3a3c
+    bottom: -20px
+    padding: 20px
+    .personName
+      color: white
+      font-family: 'Playfair Display', serif
+      font-weight: 700
+    .personTitle
+      color: lightgray
 </style>
