@@ -7,3 +7,11 @@
   +screen(mobile)
     width: calc(100% - 40px)
     margin: 0 20px
+
+.split-container
+  +screen(desktop)
+    +flexbox
+  +screen(tablet)
+    +flexbox
+  .split-item
+    +flex(1)

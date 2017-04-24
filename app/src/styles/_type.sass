@@ -11,6 +11,8 @@
 // $sans-serif_small: 'Inconsolata', sans-serif
 // $sans-serif: 'Roboto', sans-serif
 //
+
+
 $font_size_big: 20px
 $font_size_regular: 16px
 $font_size_small: 11px
@@ -27,18 +29,18 @@ $regular_line_height: 22px
 
 
 =headerType($type)
-  font-family: 'Playfair Display', serif
   font-weight: 700
-  font-style: italic
   letter-spacing: 2px
-  color: white
+  color: black
   @if $type == big
+    font-family: 'Playfair Display', serif
     font-size: 50px
     line-height: 55px
     font-weight: 900
     letter-spacing: 4px
   @if $type == normal
-    font-size: 43px
+    font-family: 'Quicksand', serif
+    font-size: 30px
     letter-spacing: 3px
     line-height: 40px
   @if $type == small
@@ -63,3 +65,38 @@ $regular_line_height: 22px
     line-height: 25px
     +screen(mobile)
       font-size: 15px
+
+.pageHeader
+  +headerType(big)
+
+.subHeader
+  +headerType(normal)
+  position: relative
+  &::after
+    position: absolute
+    content: ""
+    height: 3px
+    width: 50px
+    background-color: #fac885
+    bottom: 0px
+    left: 0
+
+.teamPictureItem
+  position: relative
+  height: 20vw
+  width: 100%
+  background-color: lightgray
+  margin-bottom: 50px
+  .pictureInfoItem
+    position: absolute
+    width: calc(100% - 30px)
+    left: 0
+    background-color: #3a3a3c
+    bottom: -20px
+    padding: 20px
+    .personName
+      color: white
+      font-family: 'Playfair Display', serif
+      font-weight: 700
+    .personTitle
+      color: lightgray
