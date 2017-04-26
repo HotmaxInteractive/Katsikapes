@@ -1,5 +1,7 @@
+
+//top layer containers
 .margin-container
-  width: $desktopWidth
+  width: calc(100vw - 200px)
   margin: 0 auto
   +screen(tablet)
     width: calc(100% - 40px)
@@ -8,6 +10,27 @@
     width: calc(100% - 40px)
     margin: 0 20px
 
+.margin-container.body
+  min-height: calc(100vh - 90px)
+  border: 3px solid black
+
+.view-container
+  +screen(desktop)
+    max-width: 1220px
+    margin: 0 auto
+  +screen(tablet)
+    width: 100%
+    padding: 0 40px
+  +screen(mobile)
+    width: 100%
+    padding: 0 20px
+  &.view-landing
+    width: 100%
+    height: calc(100vh - 90px)
+    max-width: 100%
+    padding: 0
+
+//stuff sitting next to each other
 .split-container
   +screen(desktop)
     +flexbox
@@ -15,3 +38,13 @@
     +flexbox
   .split-item
     +flex(1)
+    &:first-of-type
+      +screen(desktop)
+        margin-right: 40px
+      +screen(tablet)
+        margin-right: 40px
+    &:last-of-type
+      +screen(desktop)
+        margin-left: 40px
+      +screen(tablet)
+        margin-left: 40px
