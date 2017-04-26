@@ -8,16 +8,30 @@
       <div class="split-item">
         <div>
           <h3 class="subHeader">origins</h3>
-          <p>how and where we started and all that</p>
+          <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
         </div>
         <div>
           <h3 class="subHeader">our philosophy</h3>
-          <p>the mantra that we say every morning after coffee</p>
+          <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis, maecenas nisl in nibh impedit, consectetuer neque. In mi ad maecenas sed libero. Malesuada commodo et dui magna mauris, at aliquam sit rutrum leo, suscipit venenatis et dapibus, id erat urna senectus. Mattis et eget vel amet justo quis, et in urna curabitur, senectus erat lectus. Elit magna nullam amet ad amet</p>
         </div>
       </div>
 
       <div class="split-item">
         <h3 class="subHeader">the team</h3>
+
+        <div class="teamPictureItem">
+          <div class="pictureInfoItem">
+            <h4 class="personName">Hazli Katsikapes</h4>
+            <h5 class="personTitle">Owner</h5>
+          </div>
+        </div>
+
+        <div class="teamPictureItem">
+          <div class="pictureInfoItem">
+            <h4 class="personName">Hazli Katsikapes</h4>
+            <h5 class="personTitle">Owner</h5>
+          </div>
+        </div>
 
         <div class="teamPictureItem">
           <div class="pictureInfoItem">
@@ -48,7 +62,7 @@ module.exports =
 
 .teamPictureItem
   position: relative
-  height: 20vw
+  height: 200px
   width: 100%
   background-color: lightgray
   margin-bottom: 50px
@@ -65,4 +79,6 @@ module.exports =
       font-weight: 700
     .personTitle
       color: lightgray
+
+
 </style>
