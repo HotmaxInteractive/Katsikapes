@@ -26,7 +26,7 @@ module.exports =
 @import src/styles/main
 
 #v_landing
-  height: calc(100% - 20px)
+  height: 100%
   background-color: #f6f6f6
   +flexbox
   +justify-content(center)

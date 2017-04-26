@@ -26,13 +26,16 @@ module.exports =
   +flex-direction(row)
   +justify-content(space-between)
   +align-items(center)
+  +subHeader(normal)
   height: 70px
   .menu-list
     +flexbox
     +flex-direction(row)
+    +align-items(center)
     .menu-item
       margin-left: 40px
       &.menu-contact
         background-color: yellow
+        padding: 10px 15px
 
 </style>

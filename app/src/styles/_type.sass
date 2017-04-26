@@ -1,56 +1,19 @@
 // type
 
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,400i,700,700i)
 @import url(https://fonts.googleapis.com/css?family=Playfair+Display:400,400i,700,700i,900,900i)
 @import url(https://fonts.googleapis.com/css?family=Quicksand:400,700)
+@import url(https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700)
 
 
-//
-// $serif: 'Libre Baskerville', serif
-// $serif_display: 'Playfair Display', serif
-// $sans-serif_small: 'Inconsolata', sans-serif
-// $sans-serif: 'Roboto', sans-serif
-//
+
+$serif: 'Libre Baskerville', serif
 
 
 $font_size_big: 20px
 $font_size_regular: 16px
 $font_size_small: 11px
-
 $regular_line_height: 22px
 
-=systemType
-  font-family: 'Quicksand', sans-serif
-  text-transform: uppercase
-  font-size: 13px
-  line-height: 15px
-  letter-spacing: 3px
-  color: $ink_black
-
-
-=headerType($type)
-  font-family: 'Playfair Display', serif
-  font-weight: 700
-  letter-spacing: 2px
-  color: black
-  @if $type == big
-    font-size: 50px
-    line-height: 55px
-    font-weight: 900
-    letter-spacing: 4px
-  @if $type == normal
-    font-size: 30px
-    letter-spacing: 3px
-    line-height: 40px
-  @if $type == small
-    font-size: 15px
-    line-height: 20px
-    font-weight: 400
-  @if $type == h2
-    font-size: 37px
-    font-weight: 900
-    line-height: 40px
-    letter-spacing: 2px
 
 =superHeader($type)
     font-family: 'Playfair Display', serif
@@ -58,44 +21,33 @@ $regular_line_height: 22px
     letter-spacing: 2px
     color: black
     @if $type == big
-      font-size: 50px
-      line-height: 55px
-      font-weight: 900
-      letter-spacing: 4px
-    @if $type == normal
-      font-size: 30px
-      letter-spacing: 3px
+      font-size: 31px
       line-height: 40px
+      font-weight: 900
+      letter-spacing: 2px
+    @if $type == normal
+      font-size: 21px
+      line-height: 30px
+      letter-spacing: 2px
 
 =subHeader($type)
   font-family: 'Quicksand', serif
   font-weight: 700
   letter-spacing: 2px
+  text-transform: uppercase
   color: black
   @if $type == big
-    font-size: 50px
-    line-height: 55px
-    font-weight: 900
-    letter-spacing: 4px
-  @if $type == normal
-    font-size: 30px
+    font-size: 21px
+    line-height: 30px
     letter-spacing: 3px
-    line-height: 40px
-  @if $type == small
+  @if $type == normal
     font-size: 15px
     line-height: 20px
-    font-weight: 400
-  @if $type == h2
-    font-size: 37px
-    font-weight: 900
-    line-height: 40px
-    letter-spacing: 2px
-
+    letter-spacing: 1px
 
 =defaultType($type)
-  font-family: 'Source Sans Pro', sans-serif
+  font-family: 'Libre Baskerville', serif
   font-weight: 400
-  letter-spacing: 1px
   color: $black
   @if $type == normal
     font-size: 16px
@@ -105,15 +57,19 @@ $regular_line_height: 22px
 
 .pageHeader
   +superHeader(big)
+  margin: 40px 0 50px 0
+  text-align: center
 
 .subHeader
-  +subHeader(normal)
+  +subHeader(big)
   position: relative
+  margin-bottom: 25px
+  padding-bottom: 15px
   &::after
     position: absolute
     content: ""
-    height: 3px
-    width: 50px
+    height: 5px
+    width: 100px
     background-color: #fac885
     bottom: 0px
     left: 0
