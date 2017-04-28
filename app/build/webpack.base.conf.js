@@ -23,7 +23,8 @@ module.exports = {
     alias: {
       'vue$': 'vue/dist/vue.esm.js',
       '@': resolve('src'),
-      'components': resolve('src/components')
+      'components': resolve('src/components'),
+      'assets': resolve ('src/assets')
     }
   },
   module: {
@@ -44,7 +45,7 @@ module.exports = {
         include: [resolve('src'), resolve('test')]
       },
       {
-        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
+        test: /\.(png|jpe?g|gif|svg|JPG)(\?.*)?$/,
         loader: 'url-loader',
         options: {
           limit: 10000,

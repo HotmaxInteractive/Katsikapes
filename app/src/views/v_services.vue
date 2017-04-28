@@ -11,21 +11,22 @@
       <li>Framing</li>
       <li>Small Projects</li>
     </ul>
-
-    <div class="paragraphContainer">
-      <div class="numbers">1.</div>
-      <h3 class="subHeader">General Contracting</h3>
-      <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
-    </div>
-    <div class="paragraphContainer">
-      <div class="numbers">2.</div>
-      <h3 class="subHeader">General Contracting</h3>
-      <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
-    </div>
-    <div class="paragraphContainer">
-      <div class="numbers">3.</div>
-      <h3 class="subHeader">General Contracting</h3>
-      <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
+    <div class="allParagraphs">
+      <div class="paragraphContainer">
+        <div class="numbers">1.</div>
+        <h3 class="subHeader">General Contracting</h3>
+        <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
+      </div>
+      <div class="paragraphContainer">
+        <div class="numbers">2.</div>
+        <h3 class="subHeader">General Contracting</h3>
+        <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
+      </div>
+      <div class="paragraphContainer">
+        <div class="numbers">3.</div>
+        <h3 class="subHeader">General Contracting</h3>
+        <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
+      </div>
     </div>
   </div>
 </template>
@@ -40,20 +41,22 @@ module.exports =
 
 <style scoped lang="sass">
 #v_services
-  .paragraphContainer
-    position: relative
+  .allParagraphs
     margin-left: 10%
     margin-right: 10%
-    margin-top: 10%
+    position: relative
     &::before
       content: ""
       height: 30%
       width: 100%
+      bottom: calc(100% + 80px)
       background-color: whitesmoke
       position: absolute
-      left: 50%
-      transform: translate(-50%, 0)
       z-index: -2
+    .paragraphContainer
+      position: relative
+      margin-top: 4%
+      margin-bottom: 4%
     .numbers
       font-size: 45px
       color: lightgray
