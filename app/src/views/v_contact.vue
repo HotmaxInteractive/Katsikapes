@@ -13,6 +13,7 @@ module.exports =
 </script>
 
 <style scoped lang="sass">
+@import src/styles/main
 #v_contact
 
 </style>

@@ -57,7 +57,6 @@ module.exports =
 
 <style scoped lang="sass">
 @import src/styles/main
-
 #v_about
   .paragraphContainer
     margin-bottom: 10%

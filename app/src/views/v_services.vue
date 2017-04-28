@@ -4,86 +4,109 @@
 
     <div class="pageHeader">Our Services.</div>
 
-    <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
+    <div class="pageSubHeader barContainer">
+      <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
+      <ul id="categories">
+        <li @click="scrollToParagraph(1)">General Contracting</li>
+        <li @click="scrollToParagraph(2)">Framing</li>
+        <li @click="scrollToParagraph(3)">Small Projects</li>
+      </ul>
+    </div>
 
-    <ul id="categories">
-      <li>General Contracting</li>
-      <li>Framing</li>
-      <li>Small Projects</li>
-    </ul>
     <div class="allParagraphs">
-      <div class="paragraphContainer">
-        <div class="numbers">1.</div>
+      <div class="paragraphContainer" number="1">
         <h3 class="subHeader">General Contracting</h3>
         <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
       </div>
-      <div class="paragraphContainer">
-        <div class="numbers">2.</div>
+      <div class="paragraphContainer" number="2">
         <h3 class="subHeader">General Contracting</h3>
         <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
       </div>
-      <div class="paragraphContainer">
-        <div class="numbers">3.</div>
+      <div class="paragraphContainer" number="3">
         <h3 class="subHeader">General Contracting</h3>
         <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
       </div>
     </div>
+
   </div>
 </template>
 
 <script lang="coffee">
 module.exports =
   name: 'services',
-  data: ->
-    something: ''
+
+  methods:
+    scrollToParagraph: (paragraph)->
+      scrollPosition = document.querySelectorAll("[number='#{paragraph}']")[0].getBoundingClientRect().top
+      cosParameter = (window.pageYOffset - scrollPosition) / 2
+      scrollCount = 0
+      scrollDuration = 1000
+      oldTimestamp = window.performance.now()
+
+      step = (newTimestamp)->
+        timeDif = newTimestamp - oldTimestamp
+        scrollCount += Math.PI / (scrollDuration / timeDif)
+
+        if (scrollCount >= Math.PI)
+          return
+
+        moveStep = Math.round(scrollPosition + cosParameter + cosParameter * Math.cos(scrollCount))
+        window.scrollTo(0,moveStep)
+        oldTimestamp = newTimestamp
+        window.requestAnimationFrame(step)
+
+      window.requestAnimationFrame(step)
+
 
 </script>
 
 <style scoped lang="sass">
+@import src/styles/main
 #v_services
-  .allParagraphs
-    margin-left: 10%
-    margin-right: 10%
+  .barContainer
     position: relative
+    p
+      padding: 0 15px 25px 15px
     &::before
       content: ""
-      height: 30%
+      height: 200px
       width: 100%
-      bottom: calc(100% + 80px)
-      background-color: whitesmoke
+      background-color: $background_gray
       position: absolute
       z-index: -2
+      max-width: 650px
+      margin: 0 auto
+      left: 0
+      right: 0
+      top: -20px
+  .allParagraphs
+    margin: 0 10%
+    position: relative
+    max-width: 650px
+    margin: 120px auto 0 auto
     .paragraphContainer
       position: relative
-      margin-top: 4%
-      margin-bottom: 4%
-    .numbers
-      font-size: 45px
-      color: lightgray
-      position: absolute
-      left: -75px
-      top: 30px
+      margin-bottom: 40px
+      &::after
+        content: attr(number) "."
+        font-size: 45px
+        color: $aesthetic_gray
+        position: absolute
+        left: -75px
+        top: 30px
   #categories
-    position: relative
-    display: flex
-    justify-content: center
-    border: 2px solid #cccdce
+    +flexbox
+    +justify-content(center)
+    +align-items(center)
+    border: 2px solid $border_dark
     background-color: white
+    box-shadow: 12px 12px 0 $aesthetic_primary
+    padding: 20px 0
+    +screen(mobile)
+      +flex-direction(column)
+      +align-items(flex-start)
     li
-      display: inline-block
-      padding-left: 5%
-      padding-right: 5%
-      padding-top: 5px
-      padding-bottom: 5px
-      position: relative
-    &::after
-      position: absolute
-      content: ""
-      width: 100%
-      height: 100%
-      background-color: #fac885
-      z-index: -1
-      top: 15px
-      left: 10px
-
+      padding: 0 20px
+      +subHeader(normal)
+      +clickable
 </style>

@@ -35,7 +35,7 @@ module.exports =
     .menu-item
       margin-left: 40px
       &.menu-contact
-        background-color: yellow
+        background-color: $aesthetic_primary
         padding: 10px 15px
 
 </style>

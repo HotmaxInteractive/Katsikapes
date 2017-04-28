@@ -41,6 +41,7 @@ module.exports =
 </script>
 
 <style scoped lang="sass">
+@import src/styles/main
 #v_work
   #bigPictureContainer
     border: 25px solid white
