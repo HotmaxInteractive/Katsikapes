@@ -3,8 +3,20 @@ Vuex = require('vuex')
 
 state =
   port: ''
-
-
+  projects: [
+    {
+      projectTitle: 'pic1',
+      projectUrl: 'img1.JPG'
+    },
+    {
+      projectTitle: 'pic2',
+      projectUrl: 'img2.JPG'
+    },
+    {
+      projectTitle: 'pic3',
+      projectUrl: 'img3.JPG'
+    }
+  ]
 
 mutations =
   SET_PORT: (state, type)->
