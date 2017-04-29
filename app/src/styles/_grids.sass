@@ -12,11 +12,16 @@
 
 .margin-container.body
   min-height: calc(100vh - 90px)
-  border: 3px solid black
+  border: 3px solid $ink_black
   &.body-work
     border: none
     background-color: $background_gray
     width: calc(100% - 50px)
+  &.body-contact
+    border: none
+    background-color: $ink_black
+    overflow-x: hidden
+
 .view-container
   +screen(desktop)
     max-width: 1220px

@@ -1,0 +1,23 @@
+{
+  "name": "katsikapes",
+  "version": "1.0.0",
+  "description": "Katsikapes server",
+  "author": "Hotmax",
+  "private": true,
+  "scripts": {
+    "postinstall": "npm install express",
+    "start": "nodemon server.js"
+  },
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.3",
+    "express": "^4.15.2",
+    "express-mailer": "^0.3.1",
+    "nodemailer": "^4.0.1",
+    "path": "^0.12.7",
+    "serve-static": "^1.12.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

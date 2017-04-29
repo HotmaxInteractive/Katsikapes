@@ -3,6 +3,11 @@ Vuex = require('vuex')
 
 state =
   port: ''
+
+  formName: ''
+  formEmail: ''
+  formMessage: ''
+
   projects: [
     {
       projectTitle: 'pic1',
@@ -21,6 +26,13 @@ state =
 mutations =
   SET_PORT: (state, type)->
     state.port = type
+
+  SET_FORM_NAME: (state, name)->
+    state.formName = name
+  SET_FORM_EMAIL: (state, email)->
+    state.formEmail = email
+  SET_FORM_MESSAGE: (state, message)->
+    state.formMessage = message
 
 
 module.exports = new Vuex.Store({
