@@ -30,20 +30,26 @@
 
       <div class="split-item">
         <h3 class="subHeader contactHeader">Get in Touch</h3>
-          <input class="contactInput" placeholder="name" @input="updateName" :value="formName"/>
-          <input class="contactInput" placeholder="email" @input="updateEmail" :value="formEmail"/>
+          <input class="contactInput" placeholder="your name" @input="updateName" :value="formName"/>
+          <input class="contactInput" placeholder="your email" @input="updateEmail" :value="formEmail"/>
           <textarea class="contactInput" placeholder="write us a message here." rows="5" @input="updateMessage" :value="formMessage"></textarea>
-          <button @click="sendMessage">do it now</button>
+          <button class="submitButton" :class="{active: messageReady}" @click="sendMessage">Send Your Message</button>
       </div>
 
     </div>
+
+    <!-- error or success toast -->
+    <toast></toast>
 
   </div>
 </template>
 
 <script lang="coffee">
 module.exports =
-  name: 'contact',
+  name: 'contact'
+
+  components:
+    toast: require('@/components/toast')
 
   methods:
     updateName: (e)->     @$store.commit('SET_FORM_NAME', e.target.value)
@@ -61,6 +67,9 @@ module.exports =
     formEmail: -> return @$store.state.formEmail
     formMessage: -> return @$store.state.formMessage
 
+    messageReady: ->
+      if @formName and @formEmail and @formMessage != '' then true else false
+
 </script>
 
 <style scoped lang="sass">
@@ -69,7 +78,9 @@ module.exports =
   .pageHeader,p
     color: white
   .pageSubHeader
-    margin-bottom: 100px
+    margin-bottom: 80px
+    +screen(mobile)
+      margin-bottom: 50px
   .contactHeader
     text-align: center
     color: $aesthetic_primary
@@ -94,15 +105,32 @@ module.exports =
     +defaultType(normal)
     border: none
 
+  .submitButton
+    width: 100%
+    padding: 20px
+    +subHeader(normal)
+    background-color: #4b4c4c
+    color: $contact_background
+    border: none
+    outline: none
+    +transition(.2s ease all)
+    &.active
+      background-color: $aesthetic_primary
+      +clickable
+      +transition(.2s ease all)
+    +screen(mobile)
+      margin-bottom: 20px
+
+
   .split-item:nth-of-type(1)
     position: relative
     &::before
       content: ''
       position: absolute
       width: 1000px
-      height: calc(100vh - 320px)
+      height: calc(100vh - 290px)
       right: -40px
-      top: -50px
+      top: -40px
       display: block
       background-color: #4b4c4c
     +screen(mobile)

@@ -26,11 +26,11 @@ module.exports =
 @import src/styles/main
 
 #v_landing
-  height: 100%
-  background-color: #f6f6f6
   +flexbox
   +justify-content(center)
   +align-items(center)
+  height: calc(100% + 4px)
+  background-color: #ebebeb
 
   .link-container
     background-color: white

@@ -6,19 +6,22 @@ module.exports =
 
     #run basic client validation -- and kick back errors
     if email is '' or isEmail(email) is false
-      errors.push('your email sucks')
+      errors.push('something is wrong with your email')
     if name is ''
-      errors.push('your name sucks')
+      errors.push("we don't have your name")
     if message is ''
-      errors.push('your message sucks')
+      errors.push("you haven't written a message yet")
 
     if errors.length
       for error in errors
-        console.log error
+        commit 'SET_TOAST_MESSAGE', {
+          errors: errors
+          message: 'There are some problems with your message:'
+          code: 400
+        }
     else
-      console.log 'you good dawg, sending to server'
 
-      #if no errors then send to server and handle the response 
+      #if no errors then send to server and handle the response
       fetch("#{process.env.SERVER_ADDRESS}/email", {
         method: 'POST'
         headers:
@@ -27,5 +30,9 @@ module.exports =
         body: JSON.stringify {name, email, message}
       })
       .then (res) ->
-        console.log res
-      .catch (err) -> console.log 'we bad dude', err
+        commit 'SET_TOAST_MESSAGE', {message: "Your message was sent, we'll get back to you soon", code: 200}
+        commit 'SET_FORM_NAME', ''
+        commit 'SET_FORM_EMAIL', ''
+        commit 'SET_FORM_MESSAGE', ''
+      .catch (err) ->
+        commit 'SET_TOAST_MESSAGE', err

@@ -13,13 +13,16 @@
 .margin-container.body
   min-height: calc(100vh - 90px)
   border: 3px solid $ink_black
+  padding-bottom: 30px
+  &.body-landing
+    padding-bottom: 0
   &.body-work
     border: none
     background-color: $background_gray
-    width: calc(100% - 50px)
+    // overflow-x: hidden
   &.body-contact
     border: none
-    background-color: $ink_black
+    background-color: $contact_background
     overflow-x: hidden
 
 .view-container
@@ -34,14 +37,15 @@
     padding: 0 20px
   &.view-landing
     width: 100%
-    height: calc(100vh - 90px)
+    height: calc(100vh - 100px)
     max-width: 100%
     padding: 0
   &.view-work
     width: 100%
-    height: calc(100vh - 90px)
+    margin: 0
     max-width: 100%
-    padding: 0
+    // height: calc(100vh - 90px)
+    // padding: 0
 
 //stuff sitting next to each other
 .split-container
