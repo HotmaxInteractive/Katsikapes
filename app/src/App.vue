@@ -30,5 +30,6 @@ module.exports =
 @import src/styles/main
 #app
   +defaultType(normal)
+  margin-bottom: 20px
 
 </style>

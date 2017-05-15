@@ -1,7 +1,7 @@
 <template>
   <div id="v_about">
     <div class="pageHeader">
-    {{something}} about
+    About Us.
     </div>
 
     <div class="split-container">
@@ -49,9 +49,7 @@
 
 <script lang="coffee">
 module.exports =
-  name: 'about',
-  data: ->
-    something: 'ok'
+  name: 'about'
 
 </script>
 
