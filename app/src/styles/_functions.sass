@@ -164,6 +164,11 @@ $mobileWidth: 800px
 	transform: translate($x, $y)
 	-ms-transform: translate($x, $y)
 
+=translateXYAndRotate($x, $y, $r)
+	-webkit-transform: translate($x, $y) rotate($r)
+	transform: translate($x, $y) rotate($r)
+	-ms-transform: translate($x, $y) rotate($r)
+
 =scale($trans...)
 	-webkit-transform: scale($trans)
 	transform: scale($trans)

@@ -3,8 +3,18 @@
 
     <div class="pageHeader">Our Work.</div>
 
+    <div class="expandedImageContainer"
+      v-if="showExpandedImage"
+      @click="showExpandedImage = false">
+      <div class="imageContainer">
+        <div class="image" :style= "{ backgroundImage: 'url(' + expandedImageUrl + ')' }"/>
+      </div>
+      <div class="backdrop"></div>
+    </div>
+
+
     <div id="featuredProjectContainer">
-      <button class="featuredButton" @click="moveFeaturedIndex">boop</button>
+      <div class="expandButton"></div>
 
       <div class="informationStack">
         <transition-group name="fadeup" tag="div">
@@ -14,53 +24,42 @@
               <div>{{project.name}}</div>
               <div>{{project.type}}</div>
             </div>
+            <button class="featuredButton" @click="moveFeaturedIndex">boop</button>
           </div>
         </transition-group>
       </div>
 
       <div class="imageStack">
-        <transition-group name="fade" tag="div" mode="out-in">
-          <div class="imageContainer" v-for="(project, index) in projects" v-if="index == featuredIndex" :key="project">
-            <img :src= "assetPath(project.url)"/>
-          </div>
-        </transition-group>
+        <div class="imageContainer"
+             v-for="(project, index) in projects"
+             v-if="index == featuredIndex"
+             :key="project"
+             @click="expandImage(assetPath(project.url))">
+          <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"/>
+        </div>
       </div>
-
     </div>
 
-    <!-- small projects stack -->
-    <div class="recentWorkContainer">
-      <h3 class="subHeader">General Contracting</h3>
-        <div class="recentWorkItems">
-          <div class="recentWorkItem" v-for="(project, index) in projects">
-            <div class="imageContainer">
-              <img @click="loadPicture(index)" :src= "assetPath(project.url)"/>
-            </div>
-          </div>
-        </div>
-    </div>
 
-    <div class="recentWorkContainer">
-      <h3 class="subHeader">Framing</h3>
-        <div class="recentWorkItems">
-          <div class="recentWorkItem" v-for="(project, index) in projects">
-            <div class="imageContainer">
-              <img @click="loadPicture(index)" :src= "assetPath(project.url)"/>
-            </div>
-          </div>
-        </div>
-    </div>
+    <!--recent work collections -->
+    <recent-work
+      :title="'General Contracting'"
+      :collection="getCollection('gc',7)"
+      :onClick="expandImage">
+    </recent-work>
 
-    <div class="recentWorkContainer">
-      <h3 class="subHeader">Small Projects</h3>
-        <div class="recentWorkItems">
-          <div class="recentWorkItem" v-for="(project, index) in projects">
-            <div class="imageContainer">
-              <img @click="loadPicture(index)" :src= "assetPath(project.url)"/>
-            </div>
-          </div>
-        </div>
-    </div>
+    <recent-work
+      :title="'Framing'"
+      :collection="getCollection('f',6)"
+      :onClick="expandImage">
+    </recent-work>
+
+    <recent-work
+      :title="'Small Projects'"
+      :collection="getCollection('sp',22)"
+      :onClick="expandImage">
+    </recent-work>
+
 
   </div>
 </template>
@@ -69,35 +68,81 @@
 
 module.exports =
   name: 'work'
+  components:
+    recentWork: require('@/components/recentWork')
+
   data: ->
     featuredIndex: 0
-    picIndex: 0
-
+    showExpandedImage: false
+    expandedImageUrl: ''
 
   computed:
     projects: -> return this.$store.state.projects
+
   methods:
     assetPath: (image)-> return require('@/assets/' + image)
-    loadPicture: (index)-> this.picIndex = index
-
     moveFeaturedIndex: ->
       if @featuredIndex < @projects.length - 1
         @featuredIndex += 1
       else
         @featuredIndex = 0
+    expandImage: (image)->
+      @showExpandedImage = true
+      @expandedImageUrl = image
+
+    getCollection: (name, amount)->
+      col = []
+      for i in [1..amount]
+        col.push({url : "#{name}/#{name}" + i + '.png'})
+      return col
+
 
 </script>
 
-<style scoped lang="sass">
+<style lang="sass">
 @import src/styles/main
 #v_work
-  overflow: hidden
+
+  .pageHeader
+    margin-top: 0
+    padding-top: 40px
+
+  .expandedImageContainer
+    position: fixed
+    width: 100vw
+    height: 100vh
+    z-index: 999999
+    top: 0
+    left: 0
+    .backdrop
+      width: 100%
+      height: 100%
+      background-color: white
+      position: absolute
+      left: 0
+      top: 0
+      z-index: -2
+    .imageContainer
+      width: calc(100% - 100px)
+      height: calc(100% - 100px)
+      margin: 50px
+      .image
+        background-size: cover
+        background-position: 50% 50%
+        width: 100%
+        height: 100%
 
   #featuredProjectContainer
     width: calc(100% - 200px)
     margin-left: 200px
     margin-bottom: 100px
     position: relative
+    +screen(tablet)
+      width: calc(100% - 60px)
+      margin-left: 30px
+    +screen(mobile)
+      width: 100%
+      margin-left: 0
 
     .informationStack
       width: 500px
@@ -105,10 +150,17 @@ module.exports =
       top: 80px
       left: -100px
       z-index: 99999
+      +screen(tablet)
+        left: 0
+      +screen(mobile)
+        width: 100%
+        bottom: -50px
+        left: 0
+        top: inherit
 
       .information
         background-color: $contact_background
-        padding: 0px 20px 20px 30px
+        padding: 0px 70px 20px 30px
         +flexbox
         +flex-direction(row)
         +align-items(flex-end)
@@ -134,43 +186,54 @@ module.exports =
       width: 100%
       height: 600px
       overflow: hidden
-      .imageContainer
-        img
-          width: 100%
-          height: auto
-
-    .featuredButton
-      position: absolute
-      width: 100px
-      height: 90px
-      right: 0
-      top: 50%
-      +translateY(-50%)
-      z-index: 99
-      background-color: $contact_background
-      outline: 0
-      border: 0
-      opacity: .8
       +clickable
-
-  .recentWorkContainer
-    width: calc(100% - 100px)
-    margin-left: 100px
-    margin-bottom: 80px
-    &:nth-last-of-type(1)
-      margin-bottom: 30px
-    .recentWorkItems
-      +flexbox
-      +align-items(center)
-      +flex-direction(row)
-      .recentWorkItem
-        +flex(1)
-        +clickable
-        .imageContainer
+      +screen(tablet)
+        border: 20px solid white
+        height: 500px
+      +screen(mobile)
+        border: none
+        height: 300px
+        width: 100%
+      .imageContainer
+        width: 100%
+        height: 100%
+        .image
+          background-size: cover
+          background-position: 50% 50%
           width: 100%
-          height: 250px
-          overflow: hidden
-          img
-            width: 100%
-            height: auto
+          height: 100%
+
+
+  //general slider buttons rules -- overriden by specific section
+  .featuredButton
+    position: absolute
+    width: 70px
+    height: 100%
+    top: 0
+    right: 0
+    z-index: 99
+    background-color: $contact_background
+    outline: 0
+    border: 0
+    +clickable
+  .expandButton
+    position: absolute
+    width: 60px
+    height: 60px
+    bottom: 60px
+    left: 60px
+    z-index: 99
+    +rotate(45deg)
+    background-color: white
+    border: 8px solid rgba(255, 255, 255, 0.5)
+    background-clip: padding-box
+    +flexbox
+    +align-items(center)
+    +justify-content(center)
+    +screen(mobile)
+      left: 50%
+      bottom: 50%
+      +translateXYAndRotate(-50%, 50%, 45deg)
+
+
 </style>
