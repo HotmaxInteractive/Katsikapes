@@ -7,14 +7,15 @@
       v-if="showExpandedImage"
       @click="showExpandedImage = false">
       <div class="imageContainer">
-        <div class="image" :style= "{ backgroundImage: 'url(' + expandedImageUrl + ')' }"/>
+        <div class="close-btn"><span>x</span> close</div>
+        <div class="image" :style= "{ backgroundImage: 'url(' + expandedImageUrl + ')' }"></div>
       </div>
       <div class="backdrop"></div>
     </div>
 
 
     <div id="featuredProjectContainer">
-      <div class="expandButton"></div>
+      <div class="expandButton" :style= "{ backgroundImage: 'url(' + assetPath('_plus.svg') + ')' }"></div>
 
       <div class="informationStack">
         <transition-group name="fadeup" tag="div">
@@ -24,7 +25,9 @@
               <div>{{project.name}}</div>
               <div>{{project.type}}</div>
             </div>
-            <button class="featuredButton" @click="moveFeaturedIndex">boop</button>
+            <button class="featuredButton"
+                    @click="moveFeaturedIndex"
+                    :style= "{ backgroundImage: 'url(' + assetPath('_arrow.svg') + ')' }"></button>
           </div>
         </transition-group>
       </div>
@@ -35,7 +38,7 @@
              v-if="index == featuredIndex"
              :key="project"
              @click="expandImage(assetPath(project.url))">
-          <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"/>
+          <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"></div>
         </div>
       </div>
     </div>
@@ -123,19 +126,33 @@ module.exports =
       top: 0
       z-index: -2
     .imageContainer
-      width: calc(100% - 100px)
-      height: calc(100% - 100px)
-      margin: 50px
+      width: calc(100% - 60px)
+      height: calc(100% - 60px)
+      margin: 30px
+      .close-btn
+        height: 50px
+        text-align: center
+        +subHeader(normal)
+        +flexbox
+        +justify-content(center)
+        +align-content(center)
+        +clickable
+        span
+          font-size: 25px
+          padding-right: 10px
       .image
-        background-size: cover
-        background-position: 50% 50%
+        background-size: contain
+        background-position: 50% 0%
+        background-repeat: no-repeat
         width: 100%
-        height: 100%
+        height: calc(100% - 50px)
+        +clickable
+
 
   #featuredProjectContainer
     width: calc(100% - 200px)
     margin-left: 200px
-    margin-bottom: 100px
+    margin-bottom: 80px
     position: relative
     +screen(tablet)
       width: calc(100% - 60px)
@@ -143,18 +160,20 @@ module.exports =
     +screen(mobile)
       width: 100%
       margin-left: 0
+      margin-bottom: 120px
 
     .informationStack
-      width: 500px
+      width: 50%
       position: absolute
       top: 80px
       left: -100px
       z-index: 99999
       +screen(tablet)
         left: 0
+        width: 500px
       +screen(mobile)
         width: 100%
-        bottom: -50px
+        bottom: -70px
         left: 0
         top: inherit
 
@@ -164,6 +183,8 @@ module.exports =
         +flexbox
         +flex-direction(row)
         +align-items(flex-end)
+        +screen(mobile)
+          padding: 20px
         .number
           +superHeader(big)
           font-size: 75px
@@ -172,6 +193,8 @@ module.exports =
           color: white
           font-weight: 600
           margin-right: 30px
+          +screen(mobile)
+            display: none
         .type
           div:first-of-type
             +subHeader(big)
@@ -215,6 +238,10 @@ module.exports =
     background-color: $contact_background
     outline: 0
     border: 0
+    background-size: 70%
+    background-repeat: no-repeat
+    background-position: 50% 50%
+    margin-right: 12px
     +clickable
   .expandButton
     position: absolute
@@ -227,6 +254,10 @@ module.exports =
     background-color: white
     border: 8px solid rgba(255, 255, 255, 0.5)
     background-clip: padding-box
+    background-size: 50%
+    background-repeat: no-repeat
+    background-position: 50% 50%
+    //background-image: url('./assets/_plus.svg')
     +flexbox
     +align-items(center)
     +justify-content(center)

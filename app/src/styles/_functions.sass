@@ -56,6 +56,17 @@ $mobileWidth: 800px
 		-ms-flex-line-pack: $value
 	align-content: $value
 
+=align-self($value: auto)
+	-webkit-align-self: $value
+	-moz-align-self: $value
+	@if $value == flex-start
+		-ms-flex-item-align: start
+	@else if $value == flex-end
+		-ms-flex-item-align: end
+	@else
+		-ms-flex-item-align: $value
+	align-self: $value
+
 =justify-content($value)
 	@if $value == flex-start
 		-webkit-box-pack: start

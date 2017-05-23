@@ -49,6 +49,8 @@ module.exports =
 @import src/styles/main
 
 #app_menu
+  a
+    color: $ink_black !important
   #desktopMenu
     +screen(mobile)
       display: none

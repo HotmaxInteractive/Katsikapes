@@ -4,9 +4,9 @@
 
     <div class="recentWorkItems">
       <div class="recentWorkItem" v-for="(project, index) in collection" @click="onClick(assetPath(project.url))" v-if="index < showAmount">
-        <div class="expandButton"></div>
+        <div class="expandButton" :style= "{ backgroundImage: 'url(' + assetPath('_plus.svg') + ')' }"></div>
         <div class="imageContainer">
-          <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"/>
+          <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"></div>
         </div>
       </div>
     </div>
@@ -48,11 +48,11 @@ module.exports =
 #v_work
   .recentWorkContainer
     width: calc(100% - 200px)
-    margin: 0 100px 80px 100px
+    margin: 0 100px 60px 100px
     position: relative
     +screen(tablet)
       width: calc(100% - 60px)
-      margin: 0 30px 80px 30px
+      margin: 0 30px 60px 30px
     +screen(mobile)
       width: 100%
       margin: 0 0 60px 0
