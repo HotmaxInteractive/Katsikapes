@@ -11,7 +11,17 @@
       </div>
     </div>
 
-    <div class="showMoreButton" @click="showMoreSwitch = !showMoreSwitch">Show {{display == 'mobile' ? 'more' : 'all'}} from {{title}} <span>&#8594;</span></div>
+    <div class="showMoreButton"
+      v-if="!showMoreSwitch"
+      @click="showMoreSwitch = true">
+      Show {{display == 'mobile' ? 'more' : 'all'}} from {{title}} <span>&#8594;</span>
+    </div>
+
+    <div class="showMoreButton"
+      v-if="showMoreSwitch"
+      @click="showMoreSwitch = false">
+      x Collapse results
+    </div>
 
   </div>
 </template>
@@ -75,9 +85,16 @@ module.exports =
         border: 4px solid white
         +screen(mobile)
           flex-basis: 100%
+
+        &:hover > .expandButton
+          opacity: 1
+          +transition(.35s ease all)
+
         .expandButton
           left: 50%
           bottom: 50%
+          opacity: 0
+          +transition(.35s ease all)
           +translateXYAndRotate(-50%, 50%, 45deg)
         .imageContainer
           width: 100%

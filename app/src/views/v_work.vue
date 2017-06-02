@@ -162,6 +162,10 @@ module.exports =
       margin-left: 0
       margin-bottom: 120px
 
+    &:hover > .expandButton
+      opacity: 1
+      +transition(.35s ease all)
+
     .informationStack
       width: 50%
       position: absolute
@@ -244,6 +248,7 @@ module.exports =
     margin-right: 12px
     +clickable
   .expandButton
+    opacity: 0
     position: absolute
     width: 60px
     height: 60px
@@ -261,6 +266,7 @@ module.exports =
     +flexbox
     +align-items(center)
     +justify-content(center)
+    +transition(.35s ease all)
     +screen(mobile)
       left: 50%
       bottom: 50%

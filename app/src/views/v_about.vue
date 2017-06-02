@@ -26,20 +26,6 @@
           </div>
         </div>
 
-        <div class="teamPictureItem">
-          <div class="pictureInfoItem">
-            <h4 class="personName">Hazli Katsikapes</h4>
-            <h5 class="personTitle">Owner</h5>
-          </div>
-        </div>
-
-        <div class="teamPictureItem">
-          <div class="pictureInfoItem">
-            <h4 class="personName">Hazli Katsikapes</h4>
-            <h5 class="personTitle">Owner</h5>
-          </div>
-        </div>
-
       </div>
 
     </div>
@@ -60,7 +46,7 @@ module.exports =
     margin-bottom: 10%
   .teamPictureItem
     position: relative
-    height: 200px
+    height: 50vh
     width: 100%
     background-color: $background_gray
     margin-bottom: 10%
@@ -72,10 +58,10 @@ module.exports =
       bottom: -20px
       padding: 20px
       .personName
+        +subHeader(normal)
         color: white
-        font-family: 'Playfair Display', serif
-        font-weight: 700
       .personTitle
+        font-size: 13px
         color: $background_gray
 
 

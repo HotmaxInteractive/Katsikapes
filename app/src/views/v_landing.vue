@@ -16,9 +16,7 @@
 
 <script lang="coffee">
 module.exports =
-  name: 'landing',
-  data: ->
-    something: 'ok'
+  name: 'landing'
 
   computed:
     projects: -> return this.$store.state.projects
@@ -55,7 +53,7 @@ module.exports =
 
   .linkContainer
     background-color: white
-    border: 30px solid rgba(255, 255, 255, 0.5)
+    border: 17px solid rgba(255, 255, 255, 0.25)
     padding: 30px
     background-clip: padding-box
     +screen(mobile)
@@ -72,8 +70,9 @@ module.exports =
       +superHeader(normal)
       letter-spacing: 1px
       font-size: 31px
-      line-height: 41px
+      line-height: 38px
       max-width: 450px
+      text-align: center
       +screen(mobile)
         width: 100%
         font-size: 25px
@@ -102,8 +101,8 @@ module.exports =
           margin-right: 3px
         &.r
           margin-left: 3px
-          background-color: $aesthetic_primary
-          color: $contact_background
+          //background-color: $aesthetic_primary
+          //color: $contact_background
         +screen(mobile)
           margin: 10px 0
           width: 100%
