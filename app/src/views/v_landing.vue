@@ -1,15 +1,35 @@
 <template>
   <div id="v_landing">
 
+      <transition name="slowfade" appear v-on:after-enter="transitionLinks = true">
     <div class="imageContainer" :style= "{ backgroundImage: 'url(' + assetPath('img4.JPG') + ')' }"></div>
+      </transition>
 
+      <transition name="fadeup" appear v-if="transitionLinks" v-on:after-enter="companyHeader = true">
     <div class="linkContainer">
-      <div class="linkHeader">Some tagline that we have to come up with</div>
+      <div class="linkHeader">Build it right the first time.</div>
       <div class="linkButtons">
         <router-link to="/services"><div class="button l">See our Services</div></router-link>
         <router-link to="/contact"><div class="button r">Get a quote</div></router-link>
       </div>
     </div>
+      </transition>
+
+      <transition name="fadeup" appear v-if="companyHeader">
+    <div class="companyTitle">
+      <div class="companyContainer">
+        <div class="spacer"></div>
+        <div class="titleOne">Katsikapes Construction</div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="spacer"></div>
+        <div class="titleTwo">
+          <div>A full service contracting company.</div>
+          <div>Contact Us: (445) 831-4489</div>
+        </div>
+      </div>
+    </div>
+      </transition>
 
   </div>
 </template>
@@ -17,6 +37,11 @@
 <script lang="coffee">
 module.exports =
   name: 'landing'
+
+  #transition storage
+  data: ->
+    transitionLinks: false
+    companyHeader: false
 
   computed:
     projects: -> return this.$store.state.projects
@@ -50,6 +75,46 @@ module.exports =
     height: 100%
     +screen(mobile)
       height: 50%
+
+  .companyTitle
+    position: absolute
+    top: 0
+    left: 0
+    width: 100%
+    height: 100%
+    z-index: -1
+    background-size: cover
+    background-image:
+    background-position: 50% 50%
+    width: 100%
+    height: 100%
+    +screen(mobile)
+      height: 50%
+
+    .companyContainer
+      height: 100%
+      +flexbox
+      +flex-direction(column)
+      +align-items(center)
+      +justify-content(space-between)
+      .titleOne
+        +superHeader(big)
+        color: white
+        font-size: 80px
+        text-align: center
+        +screen(tablet)
+          line-height: 80px
+        +screen(mobile)
+          font-size: 40px
+          line-height: 40px
+      .titleTwo
+        background-color: white
+        width: 100%
+        height: 50px
+        text-align: center
+        +flexbox
+        +align-items(flex-end)
+        +justify-content(space-between)
 
   .linkContainer
     background-color: white
@@ -97,12 +162,17 @@ module.exports =
         color: white
         padding: 15px 0px
         box-shadow: 6px 6px 0px lightgrey
+        +transition(.45s ease all)
         &.l
           margin-right: 3px
         &.r
           margin-left: 3px
           //background-color: $aesthetic_primary
           //color: $contact_background
+        &:hover
+          background-color: $aesthetic_primary
+          color: $contact_background
+          +transition(.45s ease all)
         +screen(mobile)
           margin: 10px 0
           width: 100%

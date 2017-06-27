@@ -55,6 +55,13 @@ module.exports =
 #app_menu
   a
     color: $ink_black !important
+  #logo
+    +superHeader(big)
+    text-transform: none
+    font-size: 25px
+    line-height: 25px
+    letter-spacing: 1px
+
   #desktopMenu
     +screen(mobile)
       display: none

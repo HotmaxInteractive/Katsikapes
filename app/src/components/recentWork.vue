@@ -2,14 +2,18 @@
   <div class="recentWorkContainer">
     <h3 class="subHeader">{{title}}</h3>
 
-    <div class="recentWorkItems">
-      <div class="recentWorkItem" v-for="(project, index) in collection" @click="onClick(assetPath(project.url))" v-if="index < showAmount">
-        <div class="expandButton" :style= "{ backgroundImage: 'url(' + assetPath('_plus.svg') + ')' }"></div>
-        <div class="imageContainer">
-          <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"></div>
-        </div>
+    <transition-group name="fade" tag="div" class="recentWorkItems">
+      <div class="recentWorkItem"
+        v-for="(project, index) in collection"
+        @click="onClick(assetPath(project.url))"
+        :key="index"
+        v-if="index < showAmount">
+          <div class="expandButton" :style= "{ backgroundImage: 'url(' + assetPath('_plus.svg') + ')' }"></div>
+          <div class="imageContainer">
+            <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"></div>
+          </div>
       </div>
-    </div>
+    </transition-group>
 
     <div class="showMoreButton"
       v-if="!showMoreSwitch"
@@ -49,7 +53,8 @@ module.exports =
       else 3
 
   methods:
-    assetPath: (image)-> return require('@/assets/' + image)
+    assetPath: (image)->
+      return require('@/assets/' + image)
 
 </script>
 

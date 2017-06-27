@@ -3,43 +3,51 @@
 
     <div class="pageHeader">Our Work.</div>
 
-    <div class="expandedImageContainer"
-      v-if="showExpandedImage"
-      @click="showExpandedImage = false">
-      <div class="imageContainer">
-        <div class="close-btn"><span>x</span> close</div>
-        <div class="image" :style= "{ backgroundImage: 'url(' + expandedImageUrl + ')' }"></div>
+    <transition name="fade">
+      <div class="expandedImageContainer"
+        v-if="showExpandedImage"
+        @click="showExpandedImage = false">
+        <div class="imageContainer">
+          <div class="close-btn"><span>x</span> close</div>
+          <div class="image" :style= "{ backgroundImage: 'url(' + expandedImageUrl + ')' }"></div>
+        </div>
+        <div class="backdrop"></div>
       </div>
-      <div class="backdrop"></div>
-    </div>
+    </transition>
 
 
     <div id="featuredProjectContainer">
       <div class="expandButton" :style= "{ backgroundImage: 'url(' + assetPath('_plus.svg') + ')' }"></div>
 
       <div class="informationStack">
-        <transition-group name="fadeup" tag="div">
-          <div class="information" v-for="(project, index) in projects" v-if="index == featuredIndex" :key="project">
-            <div class="number">{{index + 1}}.</div>
-            <div class="type">
-              <div>{{project.name}}</div>
-              <div>{{project.type}}</div>
-            </div>
-            <button class="featuredButton"
-                    @click="moveFeaturedIndex"
-                    :style= "{ backgroundImage: 'url(' + assetPath('_arrow.svg') + ')' }"></button>
+        <div class="information" v-for="(project, index) in projects" v-if="index == featuredIndex" :key="project">
+          <div class="number">{{index + 1}}.</div>
+          <div class="type">
+            <div>{{project.name}}</div>
+            <div>{{project.type}}</div>
           </div>
-        </transition-group>
+          <button class="featuredButton"
+                  @click="moveFeaturedIndex"
+                  :style= "{ backgroundImage: 'url(' + assetPath('_arrow.svg') + ')' }"></button>
+        </div>
+
+        <div class="slider-timer" :class="{ slide: slideTimerIsTicking }"></div>
       </div>
 
       <div class="imageStack">
-        <div class="imageContainer"
-             v-for="(project, index) in projects"
-             v-if="index == featuredIndex"
-             :key="project"
-             @click="expandImage(assetPath(project.url))">
-          <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"></div>
-        </div>
+
+        <div class="transition-cover" :class="{ slide: slideTransitionIsActive }"></div>
+        <transition name="waitforcover" mode="out-in" :duration="{ enter: 1, leave: 600 }">
+          <div class="imageContainer"
+               v-on:mouseover="stopTimer"
+               v-on:mouseout="startTimer"
+               v-for="(project, index) in projects"
+               v-if="index == featuredIndex"
+               :key="project"
+               @click="expandImage(assetPath(project.url))">
+            <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"></div>
+          </div>
+        </transition>
       </div>
     </div>
 
@@ -78,17 +86,48 @@ module.exports =
     featuredIndex: 0
     showExpandedImage: false
     expandedImageUrl: ''
+    slideTransitionIsActive: false
+    slideTimerIsTicking: true
+
+  mounted: ->
+    @startSlideTimer = setInterval =>
+      @moveFeaturedIndex()
+    , 3500
 
   computed:
     projects: -> return this.$store.state.projects
 
   methods:
     assetPath: (image)-> return require('@/assets/' + image)
+
     moveFeaturedIndex: ->
-      if @featuredIndex < @projects.length - 1
-        @featuredIndex += 1
+      #prevent multiple button presses until timeout is returned
+      if @slideTransitionIsActive
+        return
       else
-        @featuredIndex = 0
+        if @featuredIndex < @projects.length - 1
+          @featuredIndex += 1
+        else
+          @featuredIndex = 0
+
+        #do timing function -- TODO: this needs to be moved to tweening library like GSAP because setTimeout and setInterval are trash
+        @slideTransitionIsActive = true
+        @stopTimer()
+        setTimeout =>
+          @slideTransitionIsActive = false
+          @startTimer()
+        , 1200
+
+    #TODO: this needs to be moved to tweening library like GSAP because setTimeout and setInterval are trash
+    stopTimer: ->
+      clearInterval(@startSlideTimer)
+      @slideTimerIsTicking = false
+    startTimer: ->
+      @slideTimerIsTicking = true
+      @startSlideTimer = setInterval =>
+          @moveFeaturedIndex()
+      , 3500
+
     expandImage: (image)->
       @showExpandedImage = true
       @expandedImageUrl = image
@@ -183,20 +222,29 @@ module.exports =
 
       .information
         background-color: $contact_background
-        padding: 0px 70px 20px 30px
+        padding: 20px
         +flexbox
         +flex-direction(row)
-        +align-items(flex-end)
+        +align-items(center)
         +screen(mobile)
           padding: 20px
+        &::after
+          content: ''
+          position: absolute
+          z-index: 99999
+          bottom: -10px
+          left: 0
+          height: 10px
+          width: 100%
+          background-color: pink
         .number
-          +superHeader(big)
-          font-size: 75px
-          line-height: 80px
+          +subHeader(normal)
+          font-size: 55px
+          line-height: 45px
           max-height: 75px
           color: white
-          font-weight: 600
-          margin-right: 30px
+          font-weight: 400
+          margin: 0 15px
           +screen(mobile)
             display: none
         .type
@@ -213,6 +261,7 @@ module.exports =
       width: 100%
       height: 600px
       overflow: hidden
+      position: relative
       +clickable
       +screen(tablet)
         border: 20px solid white
@@ -224,12 +273,57 @@ module.exports =
       .imageContainer
         width: 100%
         height: 100%
+        position: absolute
         .image
           background-size: cover
           background-position: 50% 50%
           width: 100%
           height: 100%
 
+
+  //animation stuff
+  .transition-cover
+    height: 100%
+    position: absolute
+    width: 100%
+    background-color: white
+    z-index: 9
+    +translateXY(-100%,0)
+    &.slide
+      +translateXY(100%,0)
+      +transition(1.2s ease-in-out all)
+
+
+  +keyframes(slideKeyframes)
+    0%
+      +translate3d(-100%, 0, 0)
+    100%
+      +translate3d(0,0, 0)
+
+  .slider-timer
+    position: absolute
+    z-index: 99999
+    bottom: -10px
+    left: 0
+    height: 10px
+    width: 100%
+    background-color: grey
+    overflow: hidden
+    &::after
+      content: ''
+      width: 100%
+      height: 100%
+      position: absolute
+      top: 0
+      left: 0
+      background-color: $aesthetic_primary
+      +translate3d(-100%, 0, 0)
+      +transition(.5s ease-in-out all)
+    &.slide
+      &::after
+        +translate3d(0, 0, 0)
+        +transition(.5s ease-in-out all)
+        +animation(slideKeyframes 3.5s ease-in-out)
 
   //general slider buttons rules -- overriden by specific section
   .featuredButton
@@ -247,6 +341,11 @@ module.exports =
     background-position: 50% 50%
     margin-right: 12px
     +clickable
+    +transition(.35s ease all)
+    +translateXY(0,0)
+    &:hover
+      +transition(.35s ease all)
+      +translateXY(5px,0)
   .expandButton
     opacity: 0
     position: absolute
@@ -257,7 +356,7 @@ module.exports =
     z-index: 99
     +rotate(45deg)
     background-color: white
-    border: 8px solid rgba(255, 255, 255, 0.5)
+    border: 8px solid rgba(255, 255, 255, 0.3)
     background-clip: padding-box
     background-size: 50%
     background-repeat: no-repeat

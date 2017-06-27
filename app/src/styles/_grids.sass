@@ -15,19 +15,25 @@
   min-height: calc(100vh - 90px)
   border: 3px solid $ink_black
   padding-bottom: 30px
+  overflow: hidden
+  +transition(1s ease-in-out all)
   &.body-landing
     padding-bottom: 0
-    border: none
+    border: 3px solid white
+    +transition(1s ease-in-out all)
   &.body-work
-    border: none
+    border: 3px solid white
     background-color: $background_gray
+    +transition(1s ease-in-out all)
     // overflow-x: hidden
   &.body-contact
-    border: none
+    border: 3px solid white
     background-color: $contact_background
-    overflow-x: hidden
+    overflow: hidden
+    +transition(1s ease-in-out all)
 
 .view-container
+  +transition(1s ease-in-out all)
   +screen(desktop)
     max-width: 1220px
     margin: 0 auto
@@ -42,10 +48,12 @@
     height: calc(100vh - 100px)
     max-width: 100%
     padding: 0
+    +transition(1s ease-in-out all)
   &.view-work
     width: 100%
     margin: 0
     max-width: 100%
+    +transition(1s ease-in-out all)
     // height: calc(100vh - 90px)
     // padding: 0
 

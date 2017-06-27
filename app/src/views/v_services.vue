@@ -5,7 +5,9 @@
     <div class="pageHeader">Our Services.</div>
 
     <div class="pageSubHeader barContainer">
-      <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
+      <p>Build it right the first time, as the saying goes. We make a point to use the proper lay-up and waterproofing techniques to ensure the longevity of your home.
+      Protecting your investment is a one of our highest priorities.
+      </p>
       <ul id="categories">
         <li @click="scrollToParagraph(1)">General Contracting</li>
         <li @click="scrollToParagraph(2)">Framing</li>
@@ -16,15 +18,24 @@
     <div class="allParagraphs">
       <div class="paragraphContainer" number="1">
         <h3 class="subHeader">General Contracting</h3>
-        <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
+        <p>
+          We are full service contractor. That means we can work on your project, foundation to finish.
+          We are equipped to handle every step of the building process.
+        </p>
       </div>
       <div class="paragraphContainer" number="2">
-        <h3 class="subHeader">General Contracting</h3>
-        <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
+        <h3 class="subHeader">Framing</h3>
+        <p>
+          Whatever design you choose, we can make it happen in a timely and efficient manner.
+          From standard framing to advanced framing techniques for super-insulated structures or sound-proof walls.
+        </p>
       </div>
       <div class="paragraphContainer" number="3">
-        <h3 class="subHeader">General Contracting</h3>
-        <p>Lorem ipsum dolor sit amet, sed bibendum. Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum. Elementum massa felis et duis</p>
+        <h3 class="subHeader">Small Projects</h3>
+        <p>
+          Whether you want to swap a window, remodel your kitchen, or build a custom furniture piece -
+          we are equipped for whatever mission you send our way.
+        </p>
       </div>
     </div>
 
@@ -86,14 +97,14 @@ module.exports =
     margin: 120px auto 0 auto
     .paragraphContainer
       position: relative
-      margin-bottom: 40px
+      margin-bottom: 80px
       &::after
         content: attr(number) "."
         font-size: 45px
         color: $aesthetic_gray
         position: absolute
         left: -75px
-        top: 30px
+        top: 17px
   #categories
     +flexbox
     +justify-content(center)
