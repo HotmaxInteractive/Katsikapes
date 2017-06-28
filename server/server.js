@@ -8,7 +8,7 @@ var email = require('./email');
 
 app = express();
 
-var port = 3030;
+var port = process.env.PORT || 5000;
 app.listen(port);
 console.log('server started on port: '+ port);
 
