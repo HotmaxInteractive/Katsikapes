@@ -56,6 +56,17 @@ $mobileWidth: 800px
 		-ms-flex-line-pack: $value
 	align-content: $value
 
+=align-self($value: auto)
+	-webkit-align-self: $value
+	-moz-align-self: $value
+	@if $value == flex-start
+		-ms-flex-item-align: start
+	@else if $value == flex-end
+		-ms-flex-item-align: end
+	@else
+		-ms-flex-item-align: $value
+	align-self: $value
+
 =justify-content($value)
 	@if $value == flex-start
 		-webkit-box-pack: start
@@ -163,6 +174,11 @@ $mobileWidth: 800px
 	-webkit-transform: translate($x, $y)
 	transform: translate($x, $y)
 	-ms-transform: translate($x, $y)
+
+=translateXYAndRotate($x, $y, $r)
+	-webkit-transform: translate($x, $y) rotate($r)
+	transform: translate($x, $y) rotate($r)
+	-ms-transform: translate($x, $y) rotate($r)
 
 =scale($trans...)
 	-webkit-transform: scale($trans)

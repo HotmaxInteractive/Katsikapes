@@ -15,7 +15,9 @@
 
       <div class="initialMobileContainer">
         <div id="logo"><router-link to="/">Katsikapes Construction</router-link></div>
-        <button class="menuToggle" @click="mobileMenu = !mobileMenu">toggle</button>
+        <button class="menuToggle"
+          @click="mobileMenu = !mobileMenu"
+          :style= "{ backgroundImage: 'url(' + assetPath('_hamburger.svg') + ')' }">toggle</button>
       </div>
 
       <div class="menu-list" v-if="mobileMenu">
@@ -32,7 +34,7 @@
 
 <script lang="coffee">
 module.exports =
-  name: 'appMenu',
+  name: 'appMenu'
   data: ->
     mobileMenu: false
 
@@ -42,6 +44,8 @@ module.exports =
 
   computed:
     route: -> return @$store.state.route.fullPath
+  methods:
+    assetPath: (image)-> return require('@/assets/' + image)
 
 </script>
 
@@ -49,6 +53,15 @@ module.exports =
 @import src/styles/main
 
 #app_menu
+  a
+    color: $ink_black !important
+  #logo
+    +superHeader(big)
+    text-transform: none
+    font-size: 25px
+    line-height: 25px
+    letter-spacing: 1px
+
   #desktopMenu
     +screen(mobile)
       display: none
@@ -67,6 +80,7 @@ module.exports =
         &.menu-contact
           background-color: $aesthetic_primary
           padding: 10px 15px
+          border-radius: 2px
 
   #mobileMenu
     +screen(desktop)
@@ -81,6 +95,19 @@ module.exports =
       +align-items(center)
       +subHeader(normal)
       height: 70px
+
+      .menuToggle
+        outline: 0
+        border: 0
+        background-size: contain
+        background-repeat: no-repeat
+        background-position: 50% 50%
+        background-color: white
+        width: 40px
+        height: 40px
+        text-indent: -999em
+        +clickable
+
 
     .menu-list
       margin-bottom: 35px

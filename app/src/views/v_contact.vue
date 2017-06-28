@@ -11,7 +11,6 @@
     </div>
 
     <div class="split-container">
-
       <div class="split-item">
           <h3 class="subHeader contactHeader">Our Information</h3>
           <div class="contactInfo">
