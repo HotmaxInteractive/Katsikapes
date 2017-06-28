@@ -6,7 +6,7 @@
   "private": true,
   "scripts": {
     "postinstall": "npm install express",
-    "start": "nodemon server.js"
+    "start": "node server.js"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
