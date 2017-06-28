@@ -11,9 +11,11 @@
     <!-- main content -->
     <div class="margin-container body" :class="'body-' + routeName">
       <div class="view-container" :class="'view-' + routeName">
-        <transition name="fadeup" mode="out-in">
+
+        <transition :name="transitionName" mode="out-in">
           <router-view></router-view>
         </transition>
+
       </div>
     </div>
 
@@ -31,6 +33,16 @@ module.exports =
   components:
     appMenu: require('components/appMenu')
     footerBar: require('components/footerBar')
+
+  data: ->
+    transitionName: 'fadeup'
+
+  watch:
+    '$route': (to, fromth)->
+      if fromth.name is 'Landing'
+        @transitionName = 'landingfade'
+      else
+        @transitionName = 'fadeup'
 
   computed:
     routeName: -> return @$store.state.route.name.toLowerCase()

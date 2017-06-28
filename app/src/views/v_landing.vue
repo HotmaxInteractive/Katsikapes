@@ -44,7 +44,7 @@ module.exports =
     companyHeader: false
 
   computed:
-    projects: -> return this.$store.state.projects
+    projects: -> return @$store.state.projects
 
   methods:
     assetPath: (image)-> return require('@/assets/' + image)
@@ -58,7 +58,6 @@ module.exports =
   +flexbox
   +justify-content(center)
   +align-items(center)
-  height: calc(100% + 4px)
   position: relative
 
   .imageContainer
@@ -118,8 +117,7 @@ module.exports =
 
   .linkContainer
     background-color: white
-    border: 17px solid rgba(255, 255, 255, 0.25)
-    padding: 30px
+    padding: 45px
     background-clip: padding-box
     +screen(mobile)
       height: 50%
@@ -134,7 +132,7 @@ module.exports =
     .linkHeader
       +superHeader(normal)
       letter-spacing: 1px
-      font-size: 31px
+      font-size: 33px
       line-height: 38px
       max-width: 450px
       text-align: center
@@ -158,10 +156,10 @@ module.exports =
         +subHeader(normal)
         width: 230px
         text-align: center
-        background-color: $contact_background
-        color: white
+        background-color: white
+        color: $contact_background
+        border: 3px solid $contact_background
         padding: 15px 0px
-        box-shadow: 6px 6px 0px lightgrey
         +transition(.45s ease all)
         &.l
           margin-right: 3px
@@ -180,6 +178,5 @@ module.exports =
             margin-right: 0px
           &:last-of-type
             margin-left: 0px
-
 
 </style>

@@ -4,6 +4,7 @@
   width: calc(100vw - 200px)
   margin: 0 auto
   max-width: 2000px
+  +transition(1s ease-in-out all)
   +screen(tablet)
     width: calc(100% - 40px)
     margin: 0 20px
@@ -45,17 +46,16 @@
     padding: 0 20px
   &.view-landing
     width: 100%
-    height: calc(100vh - 100px)
     max-width: 100%
     padding: 0
     +transition(1s ease-in-out all)
+    #v_landing
+      height: calc(100vh - 100px)
   &.view-work
     width: 100%
     margin: 0
     max-width: 100%
     +transition(1s ease-in-out all)
-    // height: calc(100vh - 90px)
-    // padding: 0
 
 //stuff sitting next to each other
 .split-container
