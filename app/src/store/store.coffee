@@ -12,19 +12,19 @@ state =
 
   projects: [
     {
-      name: 'This needs a title'
+      name: 'Custom ADU'
       url: 'gc/gc1.png'
-      type: 'framing'
+      type: 'general contracting'
     },
     {
-      name: 'This also needs a title'
+      name: 'Pavilion'
       url: 'sp/sp20.png'
       type: 'framing'
     },
     {
-      name: 'another project'
+      name: 'Custom Deck and Porches'
       url: 'sp/sp11.png'
-      type: 'framing'
+      type: 'general contracting'
     }
   ]
 

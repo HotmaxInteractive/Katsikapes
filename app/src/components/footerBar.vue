@@ -8,13 +8,13 @@
 
             <div class="split-item">
               <div class="footer-title">our contact.</div>
-              <div class="footer-subtitle">Phone: some number</div>
-              <div class="footer-subtitle">Email: someemail@email.com</div>
+              <div class="footer-subtitle">Phone: 360.301.3280</div>
+              <div class="footer-subtitle">Email: ahkatsikapes@gmail.com</div>
             </div>
             <div class="split-item">
               <div class="footer-title">our address.</div>
-              <div class="footer-subtitle">something on some street</div>
-              <div class="footer-subtitle">someplace in america, USA</div>
+              <div class="footer-subtitle">241 Chimacum Creek Drive</div>
+              <div class="footer-subtitle">Port Hadlock, WA, 98339</div>
             </div>
 
           </div>
