@@ -61,6 +61,9 @@ module.exports =
     font-size: 25px
     line-height: 25px
     letter-spacing: 1px
+    +screen(mobile)
+      font-size: 18px
+      line-height: 18px
 
   #desktopMenu
     +screen(mobile)

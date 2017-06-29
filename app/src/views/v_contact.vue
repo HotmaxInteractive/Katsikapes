@@ -4,9 +4,9 @@
 
     <div class="pageSubHeader">
       <p>
-        Lorem ipsum dolor sit amet, sed bibendum.
-        Sit ut arcu, a aliquam neque, accumsan sed vivamus urna duis sit, in ac taciti curabitur amet eget bibendum.
-        Elementum massa felis et duis.
+        You can call us, or leave us a message right on this page using the form.
+        We would love to hear from you about your project.
+        We will get back to you as soon as we can.
       </p>
     </div>
 
@@ -15,15 +15,15 @@
           <h3 class="subHeader contactHeader">Our Information</h3>
           <div class="contactInfo">
             <div class="contactTitle">our address.</div>
-            <p>Something</p>
-            <p>Something</p>
-            <p>Something</p>
+            <p>241 Chimacum Creek Drive</p>
+            <p>Port Hadlock, WA</p>
+            <p>98339</p>
           </div>
           <div class="contactInfo">
             <div class="contactTitle">our contact.</div>
-            <p>Something</p>
-            <p>Something</p>
-            <p>Something</p>
+            <p>cell: <span>360.301.3280</span></p>
+            <p>home: <span>360.385.7351</span></p>
+            <p>email: ahkatsikapes@gmail.com</p>
           </div>
       </div>
 
@@ -95,6 +95,10 @@ module.exports =
       color: white
       margin-bottom: 10px
       letter-spacing: 1px
+    p
+      span
+        +subHeader(normal)
+        color: white
 
   .contactInput
     display: block

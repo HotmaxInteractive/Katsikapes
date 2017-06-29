@@ -25,7 +25,7 @@
         <div class="spacer"></div>
         <div class="titleTwo">
           <div>A full service contracting company.</div>
-          <div>Contact Us: (445) 831-4489</div>
+          <div>Contact Us: (360).301.3280</div>
         </div>
       </div>
     </div>
@@ -68,7 +68,6 @@ module.exports =
     height: 100%
     z-index: -2
     background-size: cover
-    background-image:
     background-position: 50% 50%
     width: 100%
     height: 100%
@@ -83,7 +82,6 @@ module.exports =
     height: 100%
     z-index: -1
     background-size: cover
-    background-image:
     background-position: 50% 50%
     width: 100%
     height: 100%
@@ -114,6 +112,8 @@ module.exports =
         +flexbox
         +align-items(flex-end)
         +justify-content(space-between)
+        +screen(mobile)
+          display: none
 
   .linkContainer
     background-color: white

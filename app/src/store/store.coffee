@@ -12,18 +12,18 @@ state =
 
   projects: [
     {
-      name: 'some project'
-      url: 'img1.JPG'
+      name: 'This needs a title'
+      url: 'gc/gc1.png'
       type: 'framing'
     },
     {
-      name: 'project again'
-      url: 'img2.JPG'
+      name: 'This also needs a title'
+      url: 'sp/sp20.png'
       type: 'framing'
     },
     {
       name: 'another project'
-      url: 'img3.JPG'
+      url: 'sp/sp11.png'
       type: 'framing'
     }
   ]

@@ -6,7 +6,7 @@
 
     <div class="pageSubHeader barContainer">
       <p>Build it right the first time, as the saying goes. We make a point to use the proper lay-up and waterproofing techniques to ensure the longevity of your home.
-      Protecting your investment is a one of our highest priorities.
+      Protecting your investment is our highest priority.
       </p>
       <ul id="categories">
         <li @click="scrollToParagraph(1)">General Contracting</li>
