@@ -29,10 +29,12 @@
 
       <div class="split-item">
         <h3 class="subHeader contactHeader">Get in Touch</h3>
-          <input class="contactInput" placeholder="your name" @input="updateName" :value="formName"/>
-          <input class="contactInput" placeholder="your email" @input="updateEmail" :value="formEmail"/>
-          <textarea class="contactInput" placeholder="write us a message here." rows="5" @input="updateMessage" :value="formMessage"></textarea>
-          <button class="submitButton" :class="{active: messageReady}" @click="sendMessage">Send Your Message</button>
+        <form method="POST" action="https://formcarry.com/s/HJYV_RNbz">
+          <input class="contactInput" name="name" type="text" placeholder="your name" @input="updateName" :value="formName"/>
+          <input class="contactInput" name="email" type="email" placeholder="your email" @input="updateEmail" :value="formEmail"/>
+          <textarea class="contactInput" name="message" placeholder="write us a message here." rows="5" @input="updateMessage" :value="formMessage"></textarea>
+          <button type="submit" class="submitButton" :class="{active: messageReady}">Send Your Message</button>
+        </form>
       </div>
 
     </div>

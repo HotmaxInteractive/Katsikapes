@@ -44,8 +44,8 @@
                v-for="(project, index) in projects"
                v-if="index == featuredIndex"
                :key="project"
-               @click="expandImage(assetPath(project.url))">
-            <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"></div>
+               @click="expandImage(imagePath(project.url))">
+            <div class="image" :style= "{ backgroundImage: 'url(' + imagePath(project.url) + ')' }"></div>
           </div>
         </transition>
       </div>
@@ -55,7 +55,7 @@
     <!--recent work collections -->
     <recent-work
       :title="'General Contracting'"
-      :collection="getCollection('gc',7)"
+      :collection="getCollection('gc',8)"
       :onClick="expandImage">
     </recent-work>
 
@@ -99,6 +99,7 @@ module.exports =
 
   methods:
     assetPath: (image)-> return require('@/assets/' + image)
+    imagePath: (image)-> return "https://storage.googleapis.com/kats_images/#{image}"
 
     moveFeaturedIndex: ->
       #prevent multiple button presses until timeout is returned

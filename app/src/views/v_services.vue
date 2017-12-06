@@ -106,16 +106,16 @@ module.exports =
         left: -75px
         top: 17px
   #categories
-    +flexbox
+    display: none
     +justify-content(center)
-    +align-items(center)
+    +flex-direction(column)
+    +align-items(flex-start)
     border: 2px solid $border_dark
     background-color: white
     box-shadow: 12px 12px 0 $aesthetic_primary
     padding: 20px 0
     +screen(mobile)
-      +flex-direction(column)
-      +align-items(flex-start)
+      +flexbox
     li
       padding: 0 20px
       +subHeader(normal)

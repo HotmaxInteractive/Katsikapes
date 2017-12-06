@@ -5,12 +5,12 @@
     <transition-group name="fade" tag="div" class="recentWorkItems">
       <div class="recentWorkItem"
         v-for="(project, index) in collection"
-        @click="onClick(assetPath(project.url))"
+        @click="onClick(imagePath(project.url))"
         :key="index"
         v-if="index < showAmount">
           <div class="expandButton" :style= "{ backgroundImage: 'url(' + assetPath('_plus.svg') + ')' }"></div>
           <div class="imageContainer">
-            <div class="image" :style= "{ backgroundImage: 'url(' + assetPath(project.url) + ')' }"></div>
+            <div class="image" :style= "{ backgroundImage: 'url(' + imagePath(project.url) + ')' }"></div>
           </div>
       </div>
     </transition-group>
@@ -53,8 +53,8 @@ module.exports =
       else 3
 
   methods:
-    assetPath: (image)->
-      return require('@/assets/' + image)
+    assetPath: (image)-> return require('@/assets/' + image)
+    imagePath: (image)-> return "https://storage.googleapis.com/kats_images/#{image}"
 
 </script>
 
