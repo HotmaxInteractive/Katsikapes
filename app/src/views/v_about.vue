@@ -87,6 +87,8 @@ module.exports =
     margin-bottom: 10px
     +flexbox
     +align-items(center)
+    +screen(mobile)
+      display: block
   .teamPictureItem
     position: relative
     height: 40vh
@@ -95,6 +97,8 @@ module.exports =
     background-color: $background_gray
     background-size: cover
     background-position: 50% 50%
+    +screen(mobile)
+      height: 30vh
     .pictureInfoItem
       position: absolute
       width: calc(100% - 10px)

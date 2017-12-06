@@ -8,6 +8,7 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
+const PrerenderSpaPlugin = require('prerender-spa-plugin')
 
 var env = config.build.env
 
@@ -46,6 +47,12 @@ var webpackConfig = merge(baseWebpackConfig, {
         safe: true
       }
     }),
+    new PrerenderSpaPlugin(
+      // Path to compiled app
+      path.join(__dirname, '../../server'),
+      // List of endpoints you wish to prerender
+      [ '/', '/about', '/contact', '/services', '/work' ]
+    ),
     // generate dist index.html with correct asset hash for caching.
     // you can customize output by editing /index.html
     // see https://github.com/ampedandwired/html-webpack-plugin

@@ -21,10 +21,13 @@ router.post('/', function (req, res, next) {
 
   var mailOptions = {
     from: req.body.email,
-    to: 'long.maxime@gmail.com',
-    subject: 'Email from ' + req.body.name,
+    to: 'ahkatsikapes@gmail.com',
+    subject: 'Katsikapes Business Email from ' + req.body.name,
     //text: req.body.message
-    html: `<p><b>New message sent from ${req.body.name} -- RESPOND TO: ${req.body.email}</b></p><p>${req.body.message}</p>`    // You can choose to send an HTML body instead
+    html: `<p style="background-color:#9ec3fb;padding:15px 30px;margin:0;color: #333333;margin-top: 20px;"><b>New message for Katsikapes Construction, sent from ${req.body.name}</b></p>
+           <p style="background-color: #eaeaea;margin: 0;padding: 30px;">${req.body.message}</p>
+           <br>
+           <p style="padding: 0 30px;"><b>Reply to: ${req.body.email}</b></p>`
   };
 
   transporter.sendMail(mailOptions, function(error, info) {
