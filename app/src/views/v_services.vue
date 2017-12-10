@@ -19,7 +19,7 @@
       <div class="paragraphContainer" number="1">
         <h3 class="subHeader">General Contracting</h3>
         <p>
-          We are full service contractor. That means we can work on your project, foundation to finish.
+          We are a full service contractor. That means we can work on your project, foundation to finish.
           We are equipped to handle every step of the building process.
         </p>
       </div>
